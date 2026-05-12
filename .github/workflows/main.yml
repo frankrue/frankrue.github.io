@@ -2,10 +2,12 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -13,10 +15,10 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Create .nojekyll
         run: touch ./.nojekyll
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
